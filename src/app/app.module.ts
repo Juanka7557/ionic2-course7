@@ -9,6 +9,12 @@ import { HomePage } from '../pages/home/home';
 import {PlacePage} from "../pages/place/place";
 import {AddPlacePage} from "../pages/add-place/add-place";
 import {SetLocationPage} from "../pages/set-location/set-location";
+import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { PlacesProvider } from '../providers/places/places';
+import { File } from '@ionic-native/file';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,10 @@ import {SetLocationPage} from "../pages/set-location/set-location";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAjhfgVx1U9E3Ssy2DMNl0H1nGaa3Tqv7s'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +42,12 @@ import {SetLocationPage} from "../pages/set-location/set-location";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlacesProvider,
+    Geolocation,
+    Camera,
+    File,
+    NativeStorage
   ]
 })
 export class AppModule {}
